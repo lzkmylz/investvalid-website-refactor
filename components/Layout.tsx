@@ -1,42 +1,105 @@
-import * as React from 'react'
-import Link from 'next/link'
-import Head from 'next/head'
+import React from 'react';
+import { observer, inject } from 'mobx-react';
+import { Menu, Dropdown, Icon, Button } from 'antd';
+import UserStore from '../stores/UserStore';
+import Router from 'next/router';
+import Link from 'next/link';
+import Head from 'next/head';
 
 type Props = {
-  title?: string
+  UserStore: UserStore
 }
 
-const Layout: React.FunctionComponent<Props> = ({
-  children,
-  title = 'This is the default title',
-}) => (
-  <div>
-    <Head>
-      <title>{title}</title>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    </Head>
-    <header>
-      <nav>
-        <Link href="/">
-          <a>Home</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/users">
-          <a>Users List</a>
-        </Link>
-      </nav>
-    </header>
-    {children}
-    <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
-    </footer>
-  </div>
-)
+@inject('UserStore')
+@observer
+class Layout extends React.Component<Props> {
+  static getInitialProps = async ({ UserStore }: any) => {
+    UserStore.initUserFromLocalStorage();
+  }
 
-export default Layout
+  handleMenuClick = (e: any) => {
+    switch(e.key) {
+      case "products":
+        Router.push("/products");
+        return;
+      case "donate":
+        Router.push("/donate");
+        return;
+      case "support":
+        Router.push("/support");
+        return;
+      case "signin":
+        Router.push("/signin");
+        return;
+      case "logout":
+        Router.push("/logout");
+        return;
+      case "dashboard":
+        Router.push("/dashboard");
+        return;
+      case "reset-pw":
+        Router.push("/reset-password");
+        return;
+      default:
+        console.log("Header router key error", e);
+    }
+  }
+
+  render() {
+    const desktopMenu = (
+      <Menu
+        onClick={this.handleMenuClick}
+      >
+        <Menu.Item key="dashboard" >Dashboard</Menu.Item>
+        <Menu.Item key="reset-pw" >Reset Password</Menu.Item>
+        <Menu.Item key="logout" >Log out</Menu.Item>
+      </Menu>
+    );
+    const mobileUnsignedMenu = (
+      <Menu
+        onClick={this.handleMenuClick}
+      >
+        <Menu.Item key="products" >Products</Menu.Item>
+        <Menu.Item key="donate" >Donate</Menu.Item>
+        <Menu.Item key="support" >Support</Menu.Item>
+        <Menu.Item key="signin" >Sign In</Menu.Item>
+        <Menu.Item key="logout" >Log Out</Menu.Item>
+      </Menu>
+    );
+
+    const mobileSignedMenu = (
+      <Menu
+        onClick={this.handleMenuClick}
+      >
+        <Menu.Item key="products" >Products</Menu.Item>
+        <Menu.Item key="donate" >Donate</Menu.Item>
+        <Menu.Item key="support" >Support</Menu.Item>
+        <Menu.Item key="dashboard" >Dashboard</Menu.Item>
+        <Menu.Item key="reset-pw" >Reset Password</Menu.Item>
+        <Menu.Item key="logout" >Log Out</Menu.Item>
+      </Menu>
+    );
+    return (
+      <div className="layout" >
+        <header>
+          <h1 className="header-title" >
+            <a href="/" >InvestValid</a>
+          </h1>
+          <div className="header-menu mobile" >
+            <Dropdown
+              overlay={Boolean(this.props.UserStore.accessToken) ? mobileSignedMenu : mobileUnsignedMenu}
+            >
+
+            </Dropdown>
+          </div>
+        </header>
+
+        <footer>
+
+        </footer>
+      </div>
+    );
+  }
+}
+
+export default Layout;
