@@ -1,19 +1,23 @@
-import * as React from 'react'
-import Link from 'next/link'
+import React from 'react'
+import { observer, inject } from 'mobx-react';
 import Layout from '../components/Layout'
-import { NextPage } from 'next'
+import UserStore from '../stores/UserStore';
 
-const IndexPage: NextPage = () => {
-  return (
-    <Layout title="Home | Next.js + TypeScript Example">
-      <h1>Hello Next.js 👋</h1>
-      <p>
-        <Link href="/about">
-          <a>About</a>
-        </Link>
-      </p>
-    </Layout>
-  )
+type Props = {
+  UserStore: UserStore
 }
 
-export default IndexPage
+@inject('UserStore')
+@observer
+class Index extends React.Component<Props> {
+
+  render() {
+    return (
+      <Layout UserStore={this.props.UserStore} >
+        Test Content
+      </Layout>
+    )
+  }
+}
+
+export default Index;

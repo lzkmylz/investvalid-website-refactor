@@ -1,8 +1,8 @@
-import UserStore from './UserStore';
-import BaseStore from '../utils/BaseStore';
+import UserStore from './UserStore'
+import BaseStore from './BaseStore'
 
 const config: { [key: string]: typeof BaseStore } = {
-  UserStore,
+  UserStore
 }
 
-export default config;
+export default config

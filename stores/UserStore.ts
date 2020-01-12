@@ -1,8 +1,8 @@
 import { observable, action } from 'mobx';
 import { CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
 import axios from 'axios';
+import BaseStore from './BaseStore'
 import { config, urlBase } from '../utils/Constants';
-import BaseStore from '../utils/BaseStore';
 
 // private variable types
 export type UserAttributes = {
@@ -15,10 +15,12 @@ export type UserAttributes = {
 
 class UserStore extends BaseStore {
   // obervable variables
-  @observable userPool = new CognitoUserPool({
-    UserPoolId: config.cognito.userPoolId ? config.cognito.userPoolId : '',
-    ClientId: config.cognito.userPoolClientId ? config.cognito.userPoolClientId : ''
-  });
+  @observable userPool: CognitoUserPool | null = 
+    config.cognito.userPoolId && config.cognito.userPoolClientId ?
+  new CognitoUserPool({
+    UserPoolId: config.cognito.userPoolId,
+    ClientId: config.cognito.userPoolClientId
+  }) : null;
   @observable cognitoUser: CognitoUser | null = null;
   @observable accessToken: String = '';
   @observable userAttributes: UserAttributes = {
@@ -48,7 +50,11 @@ class UserStore extends BaseStore {
   }
 
   @action initUserFromLocalStorage = () => {
-    var cognitoUser = this.userPool.getCurrentUser();
+    var cognitoUser: CognitoUser | null = null;
+    if(this.userPool) {
+      cognitoUser = this.userPool.getCurrentUser();
+    }
+    
     if(cognitoUser != null) {
       this.setCognitoUser(cognitoUser);
       cognitoUser.getSession((err: Error, result: any) => {

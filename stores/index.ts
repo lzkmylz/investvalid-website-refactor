@@ -1,13 +1,14 @@
 import {useStaticRendering} from 'mobx-react'
-import config from './config';
+import config from './config'
 
 const isServer = typeof window === 'undefined'
-// Comment 1
+// 见代码注释1
 useStaticRendering(isServer)
 
 export class Store {
   [key: string]: any
-  // Comment 2
+
+  // 见代码注释2
   constructor(initialState: any = {}) {
     for (const k in config) {
       if (config.hasOwnProperty(k)) {
@@ -18,7 +19,7 @@ export class Store {
 }
 
 let store: any = null
-// Comment 3
+// 见代码注释3
 export function initializeStore(initialState = {}) {
   if (isServer) {
     return new Store(initialState)

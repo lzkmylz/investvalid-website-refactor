@@ -4,23 +4,24 @@ import {initializeStore, Store} from '../stores'
 import {Provider} from 'mobx-react'
 
 class MyMobxApp extends App {
+
   mobxStore: Store
 
+  // Fetching serialized(JSON) store state
   static async getInitialProps(appContext: AppContext): Promise<any> {
     const ctx: any = appContext.ctx
-    // Comment 1
+    // 见代码注释1
     ctx.mobxStore = initializeStore()
     const appProps = await App.getInitialProps(appContext)
-    
+
     return {
       ...appProps,
       initialMobxState: ctx.mobxStore
     }
   }
-
   constructor(props: any) {
     super(props)
-    // Comment 2
+    // 见代码注释2
     const isServer = typeof window === 'undefined'
     this.mobxStore = isServer ? props.initialMobxState : initializeStore(props.initialMobxState)
   }
@@ -28,7 +29,7 @@ class MyMobxApp extends App {
   render() {
     const {Component, pageProps}: any = this.props
     return (
-      // Comment 3
+      // 见代码注释3
       <Provider {...this.mobxStore}>
         <Component {...pageProps} />
       </Provider>
@@ -36,4 +37,4 @@ class MyMobxApp extends App {
   }
 }
 
-export default MyMobxApp;
+export default MyMobxApp

@@ -1,5 +1,5 @@
 import React from 'react';
-import { observer, inject } from 'mobx-react';
+import { observer } from 'mobx-react';
 import { Menu, Dropdown, Icon, Button } from 'antd';
 import UserStore from '../stores/UserStore';
 import Router from 'next/router';
@@ -10,12 +10,8 @@ type Props = {
   UserStore: UserStore
 }
 
-@inject('UserStore')
 @observer
 class Layout extends React.Component<Props> {
-  static getInitialProps = async ({ UserStore }: any) => {
-    UserStore.initUserFromLocalStorage();
-  }
 
   handleMenuClick = (e: any) => {
     switch(e.key) {
@@ -81,22 +77,68 @@ class Layout extends React.Component<Props> {
     );
     return (
       <div className="layout" >
+        <Head>
+          <title>InvestValid</title>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        </Head>
         <header>
           <h1 className="header-title" >
             <a href="/" >InvestValid</a>
           </h1>
-          <div className="header-menu mobile" >
+          <div className="header-menu-mobile" >
             <Dropdown
               overlay={Boolean(this.props.UserStore.accessToken) ? mobileSignedMenu : mobileUnsignedMenu}
             >
-
+              <Button>
+                <Icon type="menu" />
+              </Button>
             </Dropdown>
           </div>
+          <ul className="header-nav-desktop" >
+            <li>
+              <Link href="/products" >
+                <a>Products</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="donate" >
+                <a>Donate</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/support" >
+                <a>Support</a>
+              </Link>
+            </li>
+          </ul>
+          <div className="header-login-desktop" >
+            {
+              Boolean(this.props.UserStore.accessToken) ? (
+                <div>
+                  <span>Welcome, &nbsp;</span>
+                  <Dropdown overlay={desktopMenu} >
+                    <span className="header-login-dropdown" >
+                      {this.props.UserStore.userAttributes.nickname}<Icon type="down" />
+                    </span>
+                  </Dropdown>
+                </div>
+              ) : (
+                <div className="header-login-desktop" >
+                  <a href="/login" className="header-login-signin" >Sign In</a>
+                  <div className="header-signup-register" >
+                    <a href="/register" >Sign Up</a>
+                  </div>
+                </div>
+              )
+            }
+          </div>
         </header>
-
         <footer>
 
         </footer>
+        <style jsx >{`
+          
+        `}</style>
       </div>
     );
   }
