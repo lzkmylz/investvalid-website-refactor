@@ -140,8 +140,10 @@ class Layout extends React.Component<Props> {
             }
           </div>
         </header>
-        <footer>
-
+        { this.props.children }
+        <footer className="footer-container" >
+          <p>&copy;{new Date().getFullYear()} Author: lzkmylz</p>
+          <p>lzkmylz@gmail.com</p>
         </footer>
       </div>
     );

@@ -14,7 +14,9 @@ class Index extends React.Component<Props> {
   render() {
     return (
       <Layout UserStore={this.props.UserStore} >
-        Test Content
+        <div className="main-content" >
+          main content
+        </div>
       </Layout>
     )
   }
