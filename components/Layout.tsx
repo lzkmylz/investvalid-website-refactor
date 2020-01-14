@@ -5,6 +5,7 @@ import UserStore from '../stores/UserStore';
 import Router from 'next/router';
 import Link from 'next/link';
 import Head from 'next/head';
+import './styles/Layout.scss';
 
 type Props = {
   UserStore: UserStore
@@ -81,9 +82,11 @@ class Layout extends React.Component<Props> {
           <title>InvestValid</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
-        <header>
+        <header className="header-container" >
           <h1 className="header-title" >
-            <a href="/" >InvestValid</a>
+            <Link href="/" >
+              <a>InvestValid</a>
+            </Link>
           </h1>
           <div className="header-menu-mobile" >
             <Dropdown
@@ -111,7 +114,7 @@ class Layout extends React.Component<Props> {
               </Link>
             </li>
           </ul>
-          <div className="header-login-desktop" >
+          <div className="header-login-container-desktop" >
             {
               Boolean(this.props.UserStore.accessToken) ? (
                 <div>
@@ -124,9 +127,13 @@ class Layout extends React.Component<Props> {
                 </div>
               ) : (
                 <div className="header-login-desktop" >
-                  <a href="/login" className="header-login-signin" >Sign In</a>
+                  <Link href="/login" >
+                    <a className="header-signin" >Sign In</a>
+                  </Link>
                   <div className="header-signup-register" >
-                    <a href="/register" >Sign Up</a>
+                    <Link href="/register" >
+                      <a>Sign Up</a>
+                    </Link>
                   </div>
                 </div>
               )
@@ -136,9 +143,6 @@ class Layout extends React.Component<Props> {
         <footer>
 
         </footer>
-        <style jsx >{`
-          
-        `}</style>
       </div>
     );
   }

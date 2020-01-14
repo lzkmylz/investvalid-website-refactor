@@ -3,6 +3,8 @@ import React from 'react'
 import {initializeStore, Store} from '../stores'
 import {Provider} from 'mobx-react'
 
+import 'antd/dist/antd.css';
+
 class MyMobxApp extends App {
 
   mobxStore: Store

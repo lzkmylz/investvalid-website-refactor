@@ -1,0 +1,107 @@
+.header-container {
+  display: flex;
+  margin: 0 20px 20px 20px;
+  padding: 20px 0;
+  flex: 0 0 auto;
+}
+.header-title {
+  flex: 1;
+  color: red;
+  text-align: center;
+  margin: auto 0;
+  font-weight: 800;
+  font-size: 28px;
+
+  a {
+    color: inherit;
+  }
+  a:hover {
+    color: #ff4d4f;
+  }
+}
+@media screen and (min-width: 426px) {
+  .header-menu-mobile {
+    display: none !important;
+  }
+}
+.header-menu-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header-nav-desktop {
+  display: flex;
+  flex: 3;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+
+  li {
+    flex: 1;
+    list-style: none;
+    text-align: center;
+    margin: 0 5px;
+    border-bottom: solid 2px transparent;
+  }
+  li:hover {
+    cursor: pointer;
+    border-bottom: solid 2px #91d5ff;
+    a {
+      text-decoration: none;
+      color: #40a9ff;
+    }
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+@media screen and (max-width: 426px) {
+  .header-nav-desktop,
+  .header-login-desktop,
+  .header-login-container-desktop {
+    display: none !important;
+  }
+}
+.header-login-container-desktop {
+  display: flex;
+  flex: 1;
+  margin: auto 0;
+}
+.header-login-dropdown {
+  color: #fa6400;
+  cursor: pointer;
+}
+.header-login-dropdown:hover {
+  color: #ffd666;
+}
+.header-login-desktop {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  color: #fa6400;
+  margin: auto 0;
+  text-align: center;
+}
+.header-signin {
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+}
+.header-signin:hover {
+  color: #ffd666;
+}
+.header-signup-register {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2px solid transparent;
+  border-radius: 5px;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+.header-signup-register:hover {
+  color: #ffd666;
+}
