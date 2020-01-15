@@ -2,6 +2,7 @@ import React from 'react';
 import { observer, inject } from 'mobx-react';
 import Layout from '../components/Layout';
 import UserStore from '../stores/UserStore';
+import RegisterForm from '../components/RegisterForm';
 
 type Props = {
   UserStore: UserStore
@@ -17,6 +18,7 @@ class Register extends React.Component<Props> {
           <div className="register-title" >
             <p>Sign Up</p>
           </div>
+          <RegisterForm UserStore={this.props.UserStore} />
         </div>
     <style jsx >{`
       .register-title {
