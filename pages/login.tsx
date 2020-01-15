@@ -1,8 +1,8 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import Layout from '../components/Layout';
-//import Link from 'next/link';
 import UserStore from '../stores/UserStore';
+import LoginForm from '../components/LoginForm';
 import { Row } from 'antd';
 
 type Props = {
@@ -25,6 +25,7 @@ class Login extends React.Component<Props> {
             </div>
             <div className="login-form-container" >
               <h1 className="login-title" >Sign In</h1>
+              <LoginForm UserStore={this.props.UserStore} />
             </div>
           </Row>
         </div>
