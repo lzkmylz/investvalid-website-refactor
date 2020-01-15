@@ -145,7 +145,7 @@ class LoginForm extends React.Component<Props> {
             valuePropName: 'checked',
             initialValue: true,
           })(<Checkbox style={{ color: "#1890ff" }} className="login-remember" >Remember me</Checkbox>)}
-          <Link href="/forget-password" >
+          <Link href="/forgetPassword" >
             <a style={{ float: "right" }} >Forgot password</a>
           </Link>
           <Button
