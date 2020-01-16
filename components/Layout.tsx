@@ -35,7 +35,7 @@ class Layout extends React.Component<Props> {
         Router.push("/dashboard");
         return;
       case "reset-pw":
-        Router.push("/reset-password");
+        Router.push("/resetPassword");
         return;
       default:
         console.log("Header router key error", e);
