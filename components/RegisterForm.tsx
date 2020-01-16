@@ -53,7 +53,7 @@ class RegisterForm extends React.Component<Props> {
           (err: any, result: any) => {
             if(!err) {
               UserStore.setCognitoUser(result.user);
-              Router.push('/signup-confirm');
+              Router.push('/signupConfirm');
             } else {
                 if(err.code === "InvalidPasswordException") {
                   this.setState({
