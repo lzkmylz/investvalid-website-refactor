@@ -40,13 +40,13 @@ class Product extends React.Component<Props> {
     )
     const data = [{
       title: 'Statistics Based Products',
-      cover: "./statistics.jpg",
+      cover: "/static/statistics.jpg",
       coverAlt: "statistics-logo",
       panelHeader: ["Stock Similarity Compute", "RSRS Compute"],
       panelText: [similarityText, rsrsText]
     }, {
       title: 'Deep Learning Based Products',
-      cover: "./DL-logo.jpg",
+      cover: "/static/DL-logo.jpg",
       coverAlt: "DL-logo",
       panelHeader: [
         "A stock price predict based on GRU",
@@ -65,12 +65,21 @@ class Product extends React.Component<Props> {
             <List
               grid={{ gutter: 16, xs: 1, sm: 2 }}
               dataSource={data}
-              renderItem={(item: any, ind) => (
+              renderItem={(item: any) => (
                 <List.Item>
                   <Card
                     className="product-card"
                     title={item.title}
-                    cover={<img src={item.cover} alt={item.coverAlt} />}
+                    cover={
+                      <img
+                        src={item.cover}
+                        alt={item.coverAlt}
+                        style={{
+                          width: '100%',
+                          height: '100%'
+                        }}
+                      />
+                    }
                   >
                     <Collapse bordered={false}>
                       {
