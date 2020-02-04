@@ -1,11 +1,12 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import { Breadcrumb, Card } from 'antd';
+import { Card } from 'antd';
 import ReactMarkdown from 'react-markdown';
 import Layout from '../../components/Layout';
 import UserStore from '../../stores/UserStore';
 import StatisticsStore from '../../stores/StatisticsStore';
 import SimilarityComputeForm from '../../components/SimilarityComputeForm';
+import ProductBreadcrumb from '../../components/ProductBreadcrumb';
 
 import '../../components/styles/SimilarityCompute.scss';
 
@@ -39,22 +40,7 @@ class SimilarityCompute extends React.Component<Props> {
     return (
       <Layout UserStore={this.props.UserStore} >
         <div className="main-content" >
-        <div className="similarity-compute-navbar" >
-            <Breadcrumb
-              className="similarity-compute-breadcrumb"
-              style={{
-                textAlign: "left"
-              }}
-            >
-              <Breadcrumb.Item>
-                <a href="/">Home</a>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item>
-                <a href="/products">Products</a>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item>Similarity Compute</Breadcrumb.Item>
-            </Breadcrumb>
-          </div>
+          <ProductBreadcrumb PageName="Similarity Compute" />
           <div className="similarity-compute-title" >
             <h1>
               Stock Similarity Compute

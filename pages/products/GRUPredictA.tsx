@@ -8,9 +8,10 @@ import {
   Row,
   Select,
   Card,
-  Breadcrumb,
 } from 'antd';
 import ReactMarkdown from 'react-markdown';
+import ProductBreadcrumb from '../../components/ProductBreadcrumb';
+import '../../components/styles/GRUPredictA.scss';
 
 type Props = {
   UserStore: UserStore,
@@ -38,17 +39,7 @@ class GRUPredictA extends React.Component<Props> {
     return (
       <Layout UserStore={this.props.UserStore} >
         <div className="main-content" >
-        <Row>
-            <Breadcrumb className="grupredict-a-breadcrumb" >
-              <Breadcrumb.Item>
-                <a href="/">Home</a>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item>
-                <a href="/products">Products</a>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item>Predict China A Stock</Breadcrumb.Item>
-            </Breadcrumb>
-          </Row>
+          <ProductBreadcrumb PageName="Predict China A Stock" />
           <Row className="grupredict-a-title-container" >
             <h1>Predict China A Stock with GRU</h1>
           </Row>
@@ -76,6 +67,8 @@ class GRUPredictA extends React.Component<Props> {
             </Card>
           </Row>
         </div>
+    <style jsx >{`
+    `}</style>
       </Layout>
     )
   }

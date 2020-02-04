@@ -1,0 +1,44 @@
+.grupredict-a-title-container {
+  font-size: 24px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.grupredict-a-select {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .grupredict-a-selectname {
+    margin-right: 10px;
+  }
+}
+
+.grupredict-a-breadcrumb {
+  a {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .grupredict-instruction-row,
+  .grupredict-a-breadcrumb {
+    width: 750px;
+    margin: 0 auto;
+  }
+
+  .grupredict-chart-row {
+    margin: 0 auto;
+    width: 750px;
+  }
+  .grupredict-instruction-card {
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .grupredict-a-breadcrumb {
+    margin: 0 10px;
+  }
+}
