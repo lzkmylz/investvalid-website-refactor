@@ -15,7 +15,7 @@
     "antd": "^3.26.6",
     "axios": "^0.19.1",
     "babel-plugin-import": "^1.13.0",
-    "highcharts": "^8.0.0",
+    "highcharts": "^8.1.1",
     "isomorphic-unfetch": "3.0.0",
     "jquery": "^3.4.1",
     "less": "^3.10.3",
